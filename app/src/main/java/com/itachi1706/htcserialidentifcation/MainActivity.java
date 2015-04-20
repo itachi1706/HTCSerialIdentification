@@ -1,9 +1,10 @@
 package com.itachi1706.htcserialidentifcation;
 
-import android.content.Context;
-import android.support.v7.app.ActionBarActivity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
-import android.telephony.TelephonyManager;
+import android.support.v7.app.ActionBarActivity;
 import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -58,13 +59,49 @@ public class MainActivity extends ActionBarActivity {
         serial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /*
                 TelephonyManager tManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
                 String uid = tManager.getDeviceId();
+                */
+                if (Build.SERIAL == null || Build.SERIAL.equals("")){
+                    Toast.makeText(getApplicationContext(), "No Serial Number found", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (!isAHTCPhone()){
+                    new AlertDialog.Builder(MainActivity.this).setTitle("Not a HTC Phone")
+                            .setMessage("This application currently only supports HTC Phones. It may support other phones soon")
+                            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    MainActivity.this.finish();
+                                }
+                            }).show();
+                    return;
+                }
+                //Check if this is a HTC phone
+                String uid = Build.SERIAL;
                 serialNumber.setText(uid);
                 search.performClick();
             }
         });
 
+    }
+
+    @SuppressWarnings("RedundantIfStatement")
+    private boolean isAHTCPhone(){
+        if (Build.MANUFACTURER.equalsIgnoreCase("HTC"))
+            return true;
+        if (Build.BRAND.equalsIgnoreCase("htc"))
+            return true;
+        if (Build.DEVICE.contains("htc") || Build.DEVICE.contains("HTC"))
+            return true;
+        if (Build.MODEL.contains("HTC") || Build.MODEL.contains("htc"))
+            return true;
+        if (Build.FINGERPRINT.contains("htc") || Build.FINGERPRINT.contains("HTC"))
+            return true;
+        if (Build.PRODUCT.contains("HTC") || Build.PRODUCT.contains("htc"))
+            return true;
+        return false;
     }
 
     private String parseSerialNumber(String serial){
