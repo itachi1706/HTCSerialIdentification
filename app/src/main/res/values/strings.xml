@@ -2,4 +2,7 @@
     <string name="app_name">HTC Serial Identification</string>
 
     <string name="action_settings">Settings</string>
+    <string name="serial_field_hint">Enter Serial Number</string>
+    <string name="button_phone_serial">Use Phone Serial</string>
+    <string name="btn_search">Search</string>
 </resources>

@@ -8,7 +8,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Search"
+        android:text="@string/btn_search"
         android:id="@+id/btnSearch"
         android:layout_below="@+id/serialField"
         android:layout_centerHorizontal="true" />
@@ -16,12 +16,12 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="number"
+        android:inputType="textNoSuggestions"
         android:ems="10"
         android:id="@+id/serialField"
         android:layout_alignParentTop="true"
         android:layout_marginTop="61dp"
-        android:hint="Enter Serial Number"
+        android:hint="@string/serial_field_hint"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignRight="@+id/tvResult"
@@ -30,7 +30,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Use Phone Serial"
+        android:text="@string/button_phone_serial"
         android:id="@+id/btnSerial"
         android:layout_below="@+id/btnSearch"
         android:layout_centerHorizontal="true" />
@@ -39,7 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
+        android:text=""
         android:id="@+id/tvResult"
         android:layout_below="@+id/btnSerial"
         android:layout_alignParentLeft="true"
