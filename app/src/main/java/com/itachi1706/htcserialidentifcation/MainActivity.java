@@ -1,7 +1,9 @@
 package com.itachi1706.htcserialidentifcation;
 
+import android.content.Context;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -50,6 +52,16 @@ public class MainActivity extends ActionBarActivity {
 
                 String htmlFormattedSN = parseSerialNumber(serialNumber.getText().toString());
                 resultList.setText(Html.fromHtml(htmlFormattedSN));
+            }
+        });
+
+        serial.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TelephonyManager tManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+                String uid = tManager.getDeviceId();
+                serialNumber.setText(uid);
+                search.performClick();
             }
         });
 
